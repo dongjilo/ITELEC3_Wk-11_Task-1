@@ -1,5 +1,4 @@
 <?php
-
     require_once("db/dbconnection.php");
     session_start();
 ?>
@@ -17,7 +16,7 @@
 </head>
 <body style="background-color: #eee">
 <nav class="navbar navbar-expand navbar-dark bg-dark sticky-top px-5 text-secondary">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">GROUP 3</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -32,6 +31,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="category.php">Category Table</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="add.php">Add User</a>
             </li>
         </ul>
     </div>
@@ -52,6 +54,7 @@
                             </div>
                             <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                         </div>";
+                unset($_SESSION["sess_del_err"]);
             }
 
             if (isset($_SESSION["sess_del_suc"])) {
@@ -65,6 +68,7 @@
                             </div>
                             <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                         </div>";
+                unset($_SESSION["sess_del_suc"]);
             }
 
             $sql = "select * from usertbl";
@@ -93,10 +97,14 @@
                     echo "<td>$name</td>";
                     echo "<td>$username</td>";
                     echo "<td>$password</td>";
-                    echo "<td class='text-center'><a href='operation/delete.php?id=$id' class='btn btn-danger btn-sm'>
-                            <svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='currentColor' class='bi bi-x-lg' viewBox='0 0 16 16'>
+                    echo "<td class='text-center'><a href='operation/delete.php?id=$id' class='btn btn-danger btn-sm' onclick='return confirm(`Are you sure you want to delete this row?`)'>
+                            <svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='currentColor' class='bi bi-pencil-square flex-shrink-0 me-2' viewBox='0 0 16 16'>
                               <path d='M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z'/>
-                            </svg></a>
+                            </svg>Delete</a>
+                            <a href='edit.php?id=$id' class='btn btn-warning btn-sm'>
+                            <svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='currentColor' class='bi bi-x-lg flex-shrink-0 me-2' viewBox='0 0 16 16'>
+                              <path d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z'/>
+                            </svg>Edit</a>
                             </td>";
                     echo "</tr>";
 

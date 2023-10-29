@@ -15,7 +15,31 @@ session_start();
     <script src="./js/bootstrap.bundle.min.js"></script>
     <title>Add Page</title>
 </head>
-<body>
+<body style="background-color: #eee">
+<nav class="navbar navbar-expand navbar-dark bg-dark sticky-top px-5 text-secondary">
+    <a class="navbar-brand" href="#">GROUP 3</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="index.php">User Table</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="items.php">Item Table</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="category.php">Category Table</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="add.php">Add User</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 <div class="container w-50 mt-5">
     <div class="card p-4">
         <p class="card-title h1 text-center ">Add User</p>
@@ -37,7 +61,7 @@ session_start();
             </div>
             <div class="container-fluid text-center mb-3">
                 <input type="submit" class="btn btn-primary" value="Save" name="saveBtn">
-                <input type="reset" class="btn btn-danger" value="Cancel" name="cancelBtn">
+                <a href="index.php"  class="btn btn-danger">Cancel</a>
             </div>
             <?php
                 if (isset($_SESSION["sess_add_err"])) {
@@ -52,11 +76,11 @@ session_start();
                             </div>
                         </div>
                     ";
+                    unset($_SESSION["sess_add_err"]);
                 }
 
                 if (isset($_SESSION["sess_add_suc"])) {
                     $success = $_SESSION["sess_add_suc"];
-                    unset($_SESSION["sess_add_err"]);
                     echo "
                         <div class='alert alert-success   d-flex align-items-center' role='alert'>
                                 <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='currentColor' class='bi bi-check-circle-fill flex-shrink-0 me-2' viewBox='0 0 16 16'>
@@ -67,6 +91,7 @@ session_start();
                             </div>
                         </div>
                     ";
+                    unset($_SESSION["sess_add_suc"]);
                 }
             ?>
         </form>
