@@ -11,12 +11,13 @@ require_once("db/dbconnection.php");
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <script src="./js/bootstrap.bundle.min.js"></script>
     <title>Category Table</title>
 </head>
 <body style="background-color: #eee">
 <nav class="navbar navbar-expand navbar-dark bg-dark sticky-top px-5 text-secondary">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">GROUP 3</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -31,6 +32,9 @@ require_once("db/dbconnection.php");
             </li>
             <li class="nav-item">
                 <a class="nav-link active" href="category.php">Category Table</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="add.php">Add User</a>
             </li>
         </ul>
     </div>
