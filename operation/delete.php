@@ -4,7 +4,8 @@ session_start();
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $sql = "delete from usertbl where id='$id'";
+    $table = $_GET['table'];
+    $sql = "delete from $table where id='$id'";
     $query = $conn -> query($sql);
     if ($query) {
         $_SESSION["sess_del_suc"] = "Data successfully deleted.";
