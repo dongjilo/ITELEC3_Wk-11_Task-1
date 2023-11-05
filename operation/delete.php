@@ -1,11 +1,12 @@
 <?php
-require_once ("../db/dbconnection.php");
+require_once("../db/dbconnection.php");
 session_start();
+$loc = $_GET['loc'];
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $table = $_GET['table'];
-    $sql = "delete from $table where id='$id'";
+    $tbl = $_GET['tbl'];
+    $sql = "delete from $tbl where id='$id'";
     $query = $conn -> query($sql);
     if ($query) {
         $_SESSION["sess_del_suc"] = "Data successfully deleted.";
@@ -18,4 +19,4 @@ if (isset($_GET['id'])) {
     $_SESSION["sess_del_err"] = "No id specified.";
     unset($_SESSION["sess_del_suc"]);
 }
-header('Location: ../index.php');
+header('Location: ../' . $loc . '.php');
