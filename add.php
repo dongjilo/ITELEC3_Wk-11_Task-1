@@ -63,14 +63,15 @@ require_once("db/dbconnection.php");
 </nav>
 
 <div class="container w-50 mt-5">
-
+<div class="form-floating">
     <select class="form-select" aria-label="Select table to add" id="add_type" name="add_type">
-        <option selected>Select table to add</option>
+        <option selected> </option>
         <option value="user">User</option>
         <option value="item">Item</option>
         <option value="category">Category</option>
     </select>
-
+    <label for="add_type">Select table to add</label>
+</div>
     <div class="card p-4 mt-4" style="display: none;" id="user">
         <p class="card-title h1 text-center">Add User</p>
         <form action="operation/saveuser.php" method="post">
