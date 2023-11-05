@@ -81,7 +81,7 @@
                 echo "<table class='table table-hover table-striped table-bordered'> 
                         <tr>
                         <thead>
-                            <th>ID</th>
+                            <th>User ID</th>
                             <th>Name</th>
                             <th>Username</th>
                             <th>Password</th>

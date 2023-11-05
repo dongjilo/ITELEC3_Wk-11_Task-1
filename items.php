@@ -81,7 +81,7 @@
             echo "<table class='table table-hover table-striped table-bordered'> 
                         <tr>
                         <thead>
-                            <th>ID</th>
+                            <th>Item ID</th>
                             <th>Name</th>
                             <th>Price</th>
                             <th>Quantity</th>
