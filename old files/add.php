@@ -11,8 +11,8 @@ session_start();
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <script src="./js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/bootstrap.bundle.min.js"></script>
     <title>Add Page</title>
 </head>
 <body style="background-color: #eee">
@@ -43,7 +43,7 @@ session_start();
 <div class="container w-50 mt-5">
     <div class="card p-4">
         <p class="card-title h1 text-center ">Add User</p>
-        <form action="./operation/save.php" method="post">
+        <form action="operation/save.php" method="post">
 
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="floatingName" placeholder="Name" name="txtname">
@@ -61,7 +61,7 @@ session_start();
             </div>
             <div class="container-fluid text-center mb-3">
                 <input type="submit" class="btn btn-primary" value="Save" name="saveBtn">
-                <a href="index.php"  class="btn btn-danger">Cancel</a>
+                <a href="index.php" class="btn btn-danger">Cancel</a>
             </div>
             <?php
                 if (isset($_SESSION["sess_add_err"])) {

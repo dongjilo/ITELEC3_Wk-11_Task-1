@@ -1,5 +1,5 @@
 <?php
-require_once ("db/dbconnection.php");
+require_once("db/dbconnection.php");
 session_start();
 
 if (isset($_GET['id']) && $_GET['id'] <> "") {
@@ -24,8 +24,8 @@ if (isset($_GET['id']) && $_GET['id'] <> "") {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <script src="./js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/bootstrap.bundle.min.js"></script>
     <title>Edit Page</title>
 </head>
 <body style="background-color: #eee">
@@ -56,7 +56,7 @@ if (isset($_GET['id']) && $_GET['id'] <> "") {
 <div class="container w-50 mt-5">
     <div class="card p-4">
         <p class="card-title h1 text-center ">Edit User</p>
-        <form action="./operation/update.php" method="post">
+        <form action="operation/update.php" method="post">
 
             <div class="form-floating mb-3">
                 <input type="hidden" class="form-control visually-hidden" id="floatingID" placeholder="ID" name="txtid" value="<?php echo $id; ?>">
@@ -78,7 +78,7 @@ if (isset($_GET['id']) && $_GET['id'] <> "") {
             </div>
             <div class="container-fluid text-center mb-3">
                 <input type="submit" class="btn btn-primary" value="Update" name="updBtn">
-                <a href="index.php"  class="btn btn-danger">Cancel</a>
+                <a href="index.php" class="btn btn-danger">Cancel</a>
             </div>
             <?php
                 if (isset($_SESSION["sess_upd_err"])) {

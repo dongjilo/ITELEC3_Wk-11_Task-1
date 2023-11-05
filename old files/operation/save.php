@@ -1,5 +1,5 @@
 <?php
-require_once ("../db/dbconnection.php");
+require_once("../db/dbconnection.php");
 session_start();
 if (isset($_POST['saveBtn'])) {
     $name = $_POST['txtname'];
