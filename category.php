@@ -1,8 +1,8 @@
 <?php
     require_once("db/dbconnection.php");
-    session_start();
     $tbl = "categorytbl";
     $loc = "category";
+    include 'operation/sessioncheck.php';
 ?>
 
 <!doctype html>
@@ -25,6 +25,9 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="profile.php">Profile</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link " href="index.php">User Table</span></a>
             </li>

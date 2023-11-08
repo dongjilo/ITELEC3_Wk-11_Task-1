@@ -1,8 +1,6 @@
 <?php
-
-session_start();
-require_once("db/dbconnection.php");
-
+    require_once("db/dbconnection.php");
+    include 'operation/sessioncheck.php';
 ?>
 
 <!doctype html>
@@ -46,6 +44,9 @@ require_once("db/dbconnection.php");
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="profile.php">Profile</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="index.php">User Table</span></a>
             </li>
