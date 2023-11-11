@@ -1,20 +1,6 @@
 <?php
 require_once ("db/dbconnection.php");
-session_start();
-
-if (isset($_GET['id']) && $_GET['id'] <> "") {
-    $id = $_GET['id'];
-    $sql = "select * from usertbl where id='$id'";
-    $query = $conn -> query($sql);
-    while ($row = $query->fetch_assoc()) {
-        $name = $row['name'];
-        $username = $row['username'];
-        $password = $row['password'];
-    }
-
-} else {
-    header('Location: index.php');
-}
+include 'operation/sessioncheck.php';
 ?>
 
 <!doctype html>
@@ -69,27 +55,44 @@ if (isset($_GET['id']) && $_GET['id'] <> "") {
         <form action="operation/updateuser.php" method="post">
 
             <div class="form-floating mb-3">
-                <input type="hidden" class="form-control visually-hidden" id="floatingID" placeholder="ID" name="txtid" value="<?php echo $id; ?>">
+                <input type="hidden" class="form-control visually-hidden" id="floatingID" placeholder="ID" name="txtid" value="<?php echo $user -> id; ?>">
             </div>
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingName" placeholder="Name" name="txtname" value="<?php echo $name; ?>">
+                <input type="text" class="form-control" id="floatingName" placeholder="Name" name="txtname" value="<?php echo $user -> name; ?>">
                 <label for="floatingName">Enter Name</label>
             </div>
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingUname" placeholder="Username" name="txtuname" value="<?php echo $username; ?>">
+                <input type="text" class="form-control" id="floatingUname" placeholder="Username" name="txtuname" value="<?php echo $user -> username; ?>">
                 <label for="floatingUname">Enter Username</label>
             </div>
 
             <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="txtpassword" value="<?php echo $password; ?>">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="txtpassword" value="<?php echo $user -> password; ?>">
                 <label for="floatingPassword">Enter Password</label>
             </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingGender" placeholder="Gender" name="txtgender" value="<?php echo $user -> gender; ?>">
+                <label for="floatingGender">Enter gender</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="date" class="form-control" id="floatingBdate" placeholder="0000-00-00" name="txtbdate" value="<?php echo $user -> birthdate; ?>">
+                <label for="floatingUname">Enter Birthdate</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingStatus" placeholder="Civil Status" name="txtstatus" value="<?php echo $user -> civil_status; ?>">
+                <label for="floatingStatus">Enter Civil Status</label>
+            </div>
+
             <div class="container-fluid text-center mb-3">
                 <input type="submit" class="btn btn-primary" value="Update" name="updBtn">
                 <a href="index.php"  class="btn btn-danger">Cancel</a>
             </div>
+
             <?php
                 if (isset($_SESSION["sess_upd_err"])) {
                     $error = $_SESSION["sess_upd_err"];

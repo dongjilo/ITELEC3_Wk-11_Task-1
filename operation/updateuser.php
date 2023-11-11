@@ -5,10 +5,14 @@ session_start();
 if (isset($_POST['updBtn'])) {
     $id = $_POST['txtid'];
     $name = $_POST['txtname'];
-    $uname = $_POST['txtuname'];
+    $username = $_POST['txtuname'];
     $password = $_POST['txtpassword'];
-    if (!empty($id) && !empty($name) && !empty($uname) && !empty($password)) {
-        $sql = "update usertbl set name='$name', username='$uname', password='$password' where id='$id'";
+    $gender = $_POST['txtgender'];
+    $birthdate = $_POST['txtbdate'];
+    $civil_status = $_POST['txtstatus'];
+
+    if (!empty($id) && !empty($name) && !empty($username) && !empty($password) && !empty($gender) && !empty($birthdate) && !empty($civil_status)) {
+        $sql = "update usertbl set name='$name', username='$username', password='$password', gender='$gender', birthdate='$birthdate', civil_status='$civil_status'  where id='$id'";
         $query = $conn -> query($sql);
         if ($query) {
             $_SESSION["sess_upd_suc"] = "Info successfully updated.";
