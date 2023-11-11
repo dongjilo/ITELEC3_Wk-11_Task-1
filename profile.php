@@ -1,5 +1,6 @@
 <?php
     include 'operation/sessioncheck.php';
+
 ?>
 
 <!doctype html>
@@ -24,6 +25,13 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link active" href="profile.php">Profile</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Settings</a>
+                <ul class="dropdown-menu">
+                    <li><?php echo "<a class='dropdown-item' href='edituser.php?id={$user -> id}'>Update Profile</a>"; ?></li>
+                    <li><a class="dropdown-item" href="operation/logout.php" onclick="confirm('Are you sure you want to logout?')">Logout</a></li>
+                </ul>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="index.php">User Table</span></a>
