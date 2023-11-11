@@ -1,6 +1,5 @@
 <?php
     include 'operation/sessioncheck.php';
-
 ?>
 
 <!doctype html>
@@ -49,50 +48,104 @@
     </div>
 </nav>
 
-<div class="container w-50 pt-5">
-    <div class="card p-4">
-        <p class="card-title h4">Welcome, <?php echo $user -> name; ?>.</p>
-        <table class="table-borderless my-3">
-            <tr>
-                <td><b>Name:</b></td>
-                <td><?php echo $user -> name; ?></td>
-            </tr>
-            <tr>
-                <td><b>Username:</b></td>
-                <td><?php echo $user -> username; ?></td>
-            </tr>
-            <tr>
-                <td><b>Password:</b></td>
-                <td><?php echo $user -> password; ?></td>
-            </tr>
-            <tr>
-                <td><b>Gender:</b></td>
-                <td><?php echo $user -> gender; ?></td>
-            </tr>
-            <tr>
-                <td><b>Civil Status:</b></td>
-                <td><?php echo $user -> civil_status; ?></td>
-            </tr>
-            <tr>
-                <td><b>Birthdate:</b></td>
-                <td><?php echo $user -> birthdate; ?></td>
-            </tr>
-        </table>
+<section style="background-color: #eee;">
 
-        <script>
-            function showPassword() {
-                var x = document.getElementById("pw");
-                if (x.type === "password") {
-                    x.type = "text";
-                } else {
-                    x.type = "password";
-                }
-            }
-        </script>
-        <div class="container text-center">
-        <a href="operation/logout.php" class="btn btn-danger" onclick="return confirm('Are you sure you want to logout?')">Logout</a>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-4 ">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="avatar"
+                             class="rounded-5 img-fluid" style="width: 150px;">
+                        <h5 class="my-3">@<?php echo $user -> username?></h5>
+                        <div class="d-flex justify-content-center mb-2">
+                            <?php echo "<a class='btn btn-primary' href='edituser.php?id={$user -> id}'>Update Profile</a>"; ?>
+                            <a class="btn btn-danger ms-1" href="operation/logout.php" onclick="confirm('Are you sure you want to logout?')">Logout</a >
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Full Name</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0"><?php echo $user -> name; ?></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Username</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0"><?php echo $user -> username; ?></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Password</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <input type="password" class="text-muted mb-0" id="pw" value="<?php echo $user -> password; ?>" disabled readonly style="border: none;">
+                                <button class="btn btn-danger btn-sm" id="showBtn" onclick="showPassword()">Show</button>
+
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Gender</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0"><?php echo $user -> gender; ?></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Civil Status</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0"><?php echo $user -> civil_status; ?></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Birthdate</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0"><?php echo $user -> birthdate; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
+<script>
+    function showPassword() {
+        var pw = document.getElementById("pw");
+        var btn = document.getElementById("showBtn");
+        if (pw.type === "password") {
+            pw.type = "text";
+            btn.classList.remove('btn-danger');
+            btn.classList.add('btn-success');
+            btn.innerText = "Hide";
+        } else {
+            pw.type = "password";
+            btn.classList.remove('btn-success');
+            btn.classList.add('btn-danger');
+            btn.innerText = "Show";
+        }
+    }
+</script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
     require_once("db/dbconnection.php");
-    session_start();
+    include 'operation/sessioncheck.php';
     $tbl = "itemtbl";
     $loc = "items";
 ?>

@@ -1,19 +1,19 @@
 <?php
-require_once ("db/dbconnection.php");
-session_start();
+    require_once ("db/dbconnection.php");
+    include 'operation/sessioncheck.php';
 
-if (isset($_GET['id']) && $_GET['id'] <> "") {
-    $id = $_GET['id'];
-    $sql = "select * from categorytbl where id='$id'";
-    $query = $conn -> query($sql);
-    while ($row = $query->fetch_assoc()) {
-        $name = $row['category_name'];
-        $desc = $row['category_description'];
+    if (isset($_GET['id']) && $_GET['id'] <> "") {
+        $id = $_GET['id'];
+        $sql = "select * from categorytbl where id='$id'";
+        $query = $conn -> query($sql);
+        while ($row = $query->fetch_assoc()) {
+            $name = $row['category_name'];
+            $desc = $row['category_description'];
+        }
+
+    } else {
+        header('Location: category.php');
     }
-
-} else {
-    header('Location: category.php');
-}
 ?>
 
 <!doctype html>
@@ -66,7 +66,7 @@ if (isset($_GET['id']) && $_GET['id'] <> "") {
 <div class="container w-50 mt-5">
     <div class="card p-4">
         <p class="card-title h1 text-center ">Edit Category</p>
-        <form action="operation/updatecategory.php" method="post">
+        <form action="operation/update.php?table=categorytbl" method="post">
 
             <div class="form-floating mb-3">
                 <input type="hidden" class="form-control visually-hidden" id="floatingID" placeholder="ID" name="txtcatid" value="<?php echo $id; ?>">

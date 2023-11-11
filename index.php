@@ -1,8 +1,8 @@
 <?php
     require_once("db/dbconnection.php");
+    include 'operation/sessioncheck.php';
     $tbl = "usertbl";
     $loc = "index";
-    include 'operation/sessioncheck.php';
 ?>
 
 <!doctype html>

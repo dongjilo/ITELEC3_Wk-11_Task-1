@@ -1,22 +1,22 @@
 <?php
-require_once ("db/dbconnection.php");
-session_start();
+    require_once ("db/dbconnection.php");
+    include 'operation/sessioncheck.php';
 
-if (isset($_GET['id']) && $_GET['id'] <> "") {
-    $id = $_GET['id'];
-    $sql = "select * from itemtbl where id='$id'";
-    $query = $conn -> query($sql);
-    while ($row = $query->fetch_assoc()) {
-        $name = $row['name'];
-        $price = $row['price'];
-        $qty = $row['quantity'];
-        $cat = $row['category'];
+    if (isset($_GET['id']) && $_GET['id'] <> "") {
+        $id = $_GET['id'];
+        $sql = "select * from itemtbl where id='$id'";
+        $query = $conn -> query($sql);
+        while ($row = $query->fetch_assoc()) {
+            $name = $row['name'];
+            $price = $row['price'];
+            $qty = $row['quantity'];
+            $cat = $row['category'];
 
+        }
+
+    } else {
+        header('Location: index.php');
     }
-
-} else {
-    header('Location: index.php');
-}
 ?>
 
 <!doctype html>
@@ -68,7 +68,7 @@ if (isset($_GET['id']) && $_GET['id'] <> "") {
 <div class="container w-50 mt-5">
     <div class="card p-4">
         <p class="card-title h1 text-center ">Edit Item</p>
-        <form action="operation/updateitem.php" method="post">
+        <form action="operation/update.php?table=itemtbl" method="post">
 
             <div class="form-floating mb-3">
                 <input type="hidden" class="form-control visually-hidden" id="floatingID" placeholder="ID" name="txtid" value="<?php echo $id; ?>">

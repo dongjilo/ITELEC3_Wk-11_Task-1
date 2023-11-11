@@ -1,6 +1,6 @@
 <?php
-require_once ("db/dbconnection.php");
-include 'operation/sessioncheck.php';
+    require_once ("db/dbconnection.php");
+    include 'operation/sessioncheck.php';
 ?>
 
 <!doctype html>
@@ -52,7 +52,7 @@ include 'operation/sessioncheck.php';
 <div class="container w-50 mt-5">
     <div class="card p-4">
         <p class="card-title h1 text-center ">Edit User</p>
-        <form action="operation/updateuser.php" method="post">
+        <form action="operation/update.php?table=usertbl" method="post">
 
             <div class="form-floating mb-3">
                 <input type="hidden" class="form-control visually-hidden" id="floatingID" placeholder="ID" name="txtid" value="<?php echo $user -> id; ?>">

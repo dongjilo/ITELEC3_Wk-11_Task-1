@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <script src="./js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
             var selectedValue = localStorage.getItem('selectedValue');
@@ -82,7 +82,7 @@
 </div>
     <div class="card p-4 mt-4" style="display: none;" id="user">
         <p class="card-title h1 text-center">Add User</p>
-        <form action="operation/saveuser.php" method="post">
+        <form action="operation/save.php?from=add&table=usertbl" method="post">
 
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="floatingName" placeholder="Name" name="txtname">
@@ -98,6 +98,22 @@
                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="txtpassword">
                 <label for="floatingPassword">Enter Password</label>
             </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingGender" placeholder="Gender" name="txtgender">
+                <label for="floatingGender">Enter gender</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="date" class="form-control" id="floatingBdate" placeholder="0000-00-00" name="txtbdate">
+                <label for="floatingUname">Enter Birthdate</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingStatus" placeholder="Civil Status" name="txtstatus">
+                <label for="floatingStatus">Enter Civil Status</label>
+            </div>
+
             <div class="container-fluid text-center mb-3">
                 <input type="submit" class="btn btn-primary" value="Save" name="saveBtn">
                 <a href="index.php" class="btn btn-danger">Cancel</a>
@@ -139,7 +155,7 @@
 
     <div class="card p-4 mt-4" style="display: none;" id="item">
         <p class="card-title h1 text-center">Add Item</p>
-        <form action="operation/saveitem.php" method="post">
+        <form action="operation/save.php?table=itemtbl" method="post">
 
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="floatingName" placeholder="Name" name="txtname">
@@ -202,7 +218,7 @@
 
     <div class="card p-4 mt-4" style="display: none;" id="category">
         <p class="card-title h1 text-center ">Add Category</p>
-        <form action="operation/savecategory.php" method="post">
+        <form action="operation/save.php?table=categorytbl" method="post">
 
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="floatingName" placeholder="Name" name="txtcatname">
@@ -253,17 +269,6 @@
         </form>
     </div>
 </div>
-
-<script>
-
-    $('#add_type').on('change', function() {
-        var val = $(this).val();
-        $('#user').hide();
-        $('#item').hide();
-        $('#category').hide();
-        $('#' + val).show();
-    });
-</script>
 
 </body>
 </html>

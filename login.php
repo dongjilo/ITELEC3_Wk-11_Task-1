@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 ?>
 
 <!doctype html>
@@ -34,6 +33,12 @@ session_start();
                 <input type="submit" class="btn btn-primary" value="Login" name="loginBtn">
                 <input type="reset" class="btn btn-danger" value="Cancel" name="cancelBtn">
             </div>
+
+            <div>
+                <p class="mb-0">Don't have an account? <a href="register.php" class="text-dark-emphasis-50 fw-bold">Sign Up</a>
+                </p>
+            </div>
+
             <?php
             if (isset($_SESSION['login_error'])) {
                 echo "<div class='alert alert-danger alert-dismissible fade show d-flex align-items-center' role='alert'>
