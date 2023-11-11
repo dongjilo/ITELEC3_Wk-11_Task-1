@@ -53,7 +53,7 @@
                 <a class="nav-link" href="items.php">Item Table</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="category.php">Category Table</a>
+                <a class="nav-link" href="category.php">Category Table</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="add.php">Add</a>

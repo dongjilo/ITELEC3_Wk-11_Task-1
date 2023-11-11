@@ -12,10 +12,10 @@
     <script src="./js/bootstrap.bundle.min.js"></script>
     <title>Register</title>
 </head>
-<body>
-<div class="container w-50">
+<body style="background-color: #eee">
+<div class="container w-50 h-100" style="margin-top: 6%">
     <div class="card p-4 mt-4" id="user">
-        <p class="card-title h1 text-center">Register</p>
+        <p class="card-title h1 text-center mb-4">Register</p>
 
         <form action="operation/save.php?from=reg&table=usertbl" method="post">
 

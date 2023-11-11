@@ -1,5 +1,5 @@
 <?php
-session_start();
+    session_start();
 ?>
 
 <!doctype html>
@@ -14,9 +14,9 @@ session_start();
     <title>Login</title>
 </head>
 <body style="background-color: #eee">
-<div class="container w-50 pt-5">
-    <div class="card p-4 mt-4" id="user">
-        <p class="card-title h1 text-center">Login</p>
+<div class="container w-50 pt-5" style="margin-top: 5%">
+    <div class="card p-4 mt-4" id="user" >
+        <p class="card-title h1 text-center mb-4">Login</p>
         <form action="operation/checklogin.php" method="post">
 
             <div class="form-floating mb-3">
@@ -35,8 +35,7 @@ session_start();
             </div>
 
             <div>
-                <p class="mb-0">Don't have an account? <a href="register.php" class="text-dark-emphasis-50 fw-bold">Sign Up</a>
-                </p>
+                <p class="mb-3">Don't have an account? <a href="register.php" class="text-dark-emphasis-50 fw-bold">Sign Up</a></p>
             </div>
 
             <?php

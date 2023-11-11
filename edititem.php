@@ -53,7 +53,7 @@
                 <a class="nav-link " href="index.php">User Table</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="items.php">Item Table</a>
+                <a class="nav-link" href="items.php">Item Table</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="category.php">Category Table</a>

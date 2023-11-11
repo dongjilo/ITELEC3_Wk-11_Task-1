@@ -34,7 +34,7 @@
                 </ul>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="index.php">User Table</span></a>
+                <a class="nav-link" href="index.php">User Table</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="items.php">Item Table</a>
@@ -51,7 +51,7 @@
 
 <div class="container w-50 mt-5">
     <div class="card p-4">
-        <p class="card-title h1 text-center ">Edit User</p>
+        <p class="card-title h1 text-center ">Edit Information</p>
         <form action="operation/update.php?table=usertbl" method="post">
 
             <div class="form-floating mb-3">
