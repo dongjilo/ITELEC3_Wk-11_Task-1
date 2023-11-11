@@ -95,6 +95,9 @@
                             <th>Name</th>
                             <th>Username</th>
                             <th>Password</th>
+                            <th>Gender</th>
+                            <th>Civil Status</th>
+                            <th>Birthdate</th>
                             <th>Action</th>
                         </thead>
                         </tr>";
@@ -103,12 +106,19 @@
                     $name = $row['name'];
                     $username = $row['username'];
                     $password = $row['password'];
+                    $gender = $row['gender'];
+                    $civilStatus = $row['civil_status'];
+                    $birthdate = $row['birthdate'];
+
 
                     echo "<tr>";
                     echo "<td>$id</td>";
                     echo "<td>$name</td>";
                     echo "<td>$username</td>";
                     echo "<td>$password</td>";
+                    echo "<td>$gender</td>";
+                    echo "<td>$civilStatus</td>";
+                    echo "<td>$birthdate</td>";
                     echo "<td class='text-center'>
                             <a href='operation/delete.php?id=$id&tbl=$tbl&loc=$loc' class='btn btn-danger btn-sm' onclick='return confirm(`Are you sure you want to delete this row?`)'>
                             <svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='currentColor' class='bi bi-trash-fill flex-shrink-0 me-2' viewBox='0 0 16 16'>
