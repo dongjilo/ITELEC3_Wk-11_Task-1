@@ -5,6 +5,7 @@ $from = $_GET['from'];
 $table = $_GET['table'];
 
 switch ($table) {
+
     case 'usertbl':
         if (isset($_POST['saveBtn'])) {
             $name = $_POST['txtname'];
@@ -19,15 +20,32 @@ switch ($table) {
                 $query = $conn -> query($sql);
 
                 if ($query) {
-                    $_SESSION["sess_add_suc"] = "User successfully added.";
-                    unset($_SESSION["sess_add_err"]);
+                    switch ($from) {
+                        case 'reg':
+                            $_SESSION["sess_add_suc"] = "Account successfully registered.";
+                            unset($_SESSION["sess_add_err"]);
+                            break;
+                        case 'add':
+                            $_SESSION["sess_add_suc"] = "User successfully added.";
+                            unset($_SESSION["sess_add_err"]);
+                            break;
+                        default:
+                            break;
+                    }
+                } else {
+                    switch ($from) {
+                        case 'reg':
+                            $_SESSION["sess_add_suc"] = "Register account failed.";
+                            unset($_SESSION["sess_add_err"]);
+                            break;
+                        case 'add':
+                            $_SESSION["sess_add_suc"] = "Failed to add user.";
+                            unset($_SESSION["sess_add_err"]);
+                            break;
+                        default:
+                            break;
+                    }
                 }
-                else {
-                    $_SESSION["sess_add_err"] = "Failed to add user.";
-                    unset($_SESSION["sess_add_suc"]);
-                }
-
-
             } else {
                 $_SESSION["sess_add_err"] = "Please complete all fields.";
                 unset($_SESSION["sess_add_suc"]);
@@ -49,6 +67,7 @@ switch ($table) {
                 break;
         }
         break;
+
     case 'itemtbl':
         if (isset($_POST['saveBtn'])) {
             $name = $_POST['txtname'];
@@ -81,6 +100,7 @@ switch ($table) {
         }
         header('Location: ../add.php');
         break;
+
     case 'categorytbl':
         if (isset($_POST['saveBtn'])) {
             $name = $_POST['txtcatname'];
@@ -98,8 +118,6 @@ switch ($table) {
                     $_SESSION["sess_add_err_cat"] = "Failed to add category.";
                     unset($_SESSION["sess_add_suc_cat"]);
                 }
-
-
             } else {
                 $_SESSION["sess_add_err_cat"] = "Please complete all fields.";
                 unset($_SESSION["sess_add_suc_cat"]);
