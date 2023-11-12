@@ -32,7 +32,7 @@
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Settings</a>
                 <ul class="dropdown-menu">
                     <li><?php echo "<a class='dropdown-item' href='edituser.php?id={$user -> id}'>Update Profile</a>"; ?></li>
-                    <li><a class="dropdown-item" href="operation/logout.php" onclick="confirm('Are you sure you want to logout?')">Logout</a></li>
+                    <li><a class="dropdown-item" href="operation/logout.php" onclick="return confirm('Are you sure you want to logout?')">Logout</a></li>
                 </ul>
             </li>
             <li class="nav-item">
@@ -120,7 +120,7 @@
                     echo "<td>$civilStatus</td>";
                     echo "<td>$birthdate</td>";
                     echo "<td class='text-center'>
-                            <a href='operation/delete.php?id=$id&tbl=$tbl&loc=$loc' class='btn btn-danger btn-sm' onclick='return confirm(`Are you sure you want to delete this row?`)'>
+                            <a href='operation/delete.php?id=$id&tbl=$tbl&loc=$loc' class='btn btn-danger btn-sm' onclick='return return confirm(`Are you sure you want to delete this row?`)'>
                             <svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='currentColor' class='bi bi-trash-fill flex-shrink-0 me-2' viewBox='0 0 16 16'>
                               <path d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z'/>
                             </svg>Delete</a>
