@@ -59,7 +59,7 @@
                              class="rounded-5 img-fluid" style="width: 150px;">
                         <h5 class="my-3">@<?php echo $user -> username?></h5>
                         <div class="d-flex justify-content-center mb-2">
-                            <?php echo "<a class='btn btn-primary' href='edituser.php?id={$user -> id}'>Update Profile</a>"; ?>
+                            <?php echo "<a class='btn btn-primary' href='edituser.php?id={$user -> id}&from=profile'>Update Profile</a>"; ?>
                             <a class="btn btn-danger ms-1" href="operation/logout.php" onclick="return confirm('Are you sure you want to logout?')">Logout</a>
                         </div>
                     </div>

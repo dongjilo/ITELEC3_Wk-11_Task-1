@@ -1,6 +1,24 @@
 <?php
     require_once ("db/dbconnection.php");
     include 'operation/sessioncheck.php';
+
+
+    $id = $_GET['id'];
+
+    $sql = "select * from usertbl where id={$id}";
+    $query = $conn->query($sql);
+    $numRows = $query->num_rows;
+    while ($row = $query->fetch_assoc()) {
+        $id = $row['id'];
+        $password = $row['password'];
+        $username = $row['username'];
+        $name = $row['name'];
+        $gender = $row['gender'];
+        $civil_status = $row['civil_status'];
+        $birthdate = $row['birthdate'];
+    }
+
+
 ?>
 
 <!doctype html>
@@ -52,45 +70,45 @@
 <div class="container w-50 mt-5">
     <div class="card p-4">
         <p class="card-title h1 text-center ">Edit Information</p>
-        <form action="operation/update.php?table=usertbl" method="post">
+        <form action="operation/update.php?table=usertbl&from=usertbl" method="post">
 
             <div class="form-floating mb-3">
-                <input type="hidden" class="form-control visually-hidden" id="floatingID" placeholder="ID" name="txtid" value="<?php echo $user -> id; ?>">
+                <input type="hidden" class="form-control visually-hidden" id="floatingID" placeholder="ID" name="txtid" value="<?php echo $id; ?>">
             </div>
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingName" placeholder="Name" name="txtname" value="<?php echo $user -> name; ?>">
+                <input type="text" class="form-control" id="floatingName" placeholder="Name" name="txtname" value="<?php echo $name; ?>">
                 <label for="floatingName">Enter Name</label>
             </div>
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingUname" placeholder="Username" name="txtuname" value="<?php echo $user -> username; ?>">
+                <input type="text" class="form-control" id="floatingUname" placeholder="Username" name="txtuname" value="<?php echo $username; ?>">
                 <label for="floatingUname">Enter Username</label>
             </div>
 
             <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="txtpassword" value="<?php echo $user -> password; ?>">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="txtpassword" value="<?php echo $password; ?>">
                 <label for="floatingPassword">Enter Password</label>
             </div>
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingGender" placeholder="Gender" name="txtgender" value="<?php echo $user -> gender; ?>">
+                <input type="text" class="form-control" id="floatingGender" placeholder="Gender" name="txtgender" value="<?php echo $gender; ?>">
                 <label for="floatingGender">Enter gender</label>
             </div>
 
             <div class="form-floating mb-3">
-                <input type="date" class="form-control" id="floatingBdate" placeholder="0000-00-00" name="txtbdate" value="<?php echo $user -> birthdate; ?>">
-                <label for="floatingUname">Enter Birthdate</label>
+                <input type="date" class="form-control" id="floatingBdate" placeholder="0000-00-00" name="txtbdate" value="<?php echo $birthdate; ?>">
+                <label for="floatingBdate">Enter Birthdate</label>
             </div>
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingStatus" placeholder="Civil Status" name="txtstatus" value="<?php echo $user -> civil_status; ?>">
+                <input type="text" class="form-control" id="floatingStatus" placeholder="Civil Status" name="txtstatus" value="<?php echo $civil_status; ?>">
                 <label for="floatingStatus">Enter Civil Status</label>
             </div>
 
             <div class="container-fluid text-center mb-3">
                 <input type="submit" class="btn btn-primary" value="Update" name="updBtn">
-                <a href="index.php"  class="btn btn-danger">Cancel</a>
+                <?php echo "<a href='index.php'  class='btn btn-danger'>Cancel</a>" ?>
             </div>
 
             <?php

@@ -4,7 +4,6 @@ session_start();
 
 $table = $_GET['table'];
 
-
 switch ($table) {
     case 'usertbl':
         if (isset($_POST['updBtn'])) {
