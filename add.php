@@ -15,6 +15,11 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
+
+            $('#orderPrice').val(0);
+            $('#orderQty').val(0);
+            $('#orderTotal').val(0);
+
             var selectedValue = localStorage.getItem('selectedValue');
             if (selectedValue) {
                 $('#add_type').val(selectedValue);
@@ -28,8 +33,29 @@
             });
 
             function showSelectedForm(selectedForm) {
-                $('#user, #item, #category').hide();
+                $('#user, #item, #category, #order').hide();
                 $('#' + selectedForm).show();
+            }
+
+            $('#item_select').on('change', function (){
+                var selectedPrice = $('#item_select').find('option:selected').data('price');
+                $('#orderPrice').val(selectedPrice);
+                calculateTotal();
+            });
+
+            $('#orderQty').on('keyup', function(){
+                calculateTotal();
+            });
+
+            $('#orderPrice').on('change', function () {
+                calculateTotal();
+            });
+
+            function calculateTotal() {
+                var price = $('#orderPrice').val();
+                var quantity = $('#orderQty').val();
+                var total = quantity * price;
+                $('#orderTotal').val(total);
             }
         });
     </script>
@@ -64,6 +90,9 @@
                 <a class="nav-link" href="category.php">Category Table</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="order.php">Order Table</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link active" href="add.php">Add</a>
             </li>
         </ul>
@@ -77,6 +106,7 @@
         <option value="user">User</option>
         <option value="item">Item</option>
         <option value="category">Category</option>
+        <option value="order">Order</option>
     </select>
     <label for="add_type">Select table to add</label>
 </div>
@@ -275,6 +305,81 @@
                     ";
                     unset($_SESSION["sess_add_suc_cat"]);
                 }
+            ?>
+        </form>
+    </div>
+
+    <div class="card p-4 mt-4" style="display: none;" id="order">
+        <p class="card-title h1 text-center">Add Order</p>
+        <form action="operation/save.php?table=ordertbl&from=add" method="post">
+
+            <div class="form-floating mb-3">
+                <select name="item_select" id="item_select" class="form-select" name="item_select">
+                    <option selected></option>
+                    <?php
+                    $sql = "select * from itemtbl";
+                    $query = $conn->query($sql);
+                    while ($row = $query->fetch_assoc()){
+                        $item_id = $row["item_id"];
+                        $item_name = $row["item_name"];
+                        $item_price = $row["item_price"];
+                        echo "<option value='$item_id' data-price='$item_price'>$item_name</option>";
+                    }
+                    ?>
+                </select>
+                <label for="category_select">Select Item</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="orderPrice" placeholder="Username" name="txtprice" readonly>
+                <label for="orderPrice">Price</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="orderQty" placeholder="Username" name="txtqty">
+                <label for="orderQty">Enter Quantity</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="orderTotal" placeholder="Total" name="txttotal" readonly>
+                <label for="orderTotal">Total</label>
+            </div>
+
+            <div class="container-fluid text-center mb-3">
+                <input type="submit" class="btn btn-primary" value="Save" name="saveBtn">
+                <a href="items.php" class="btn btn-danger">Cancel</a>
+            </div>
+
+            <?php
+            if (isset($_SESSION["sess_add_err_order"])) {
+                $error = $_SESSION["sess_add_err_order"];
+                echo "
+                        <div class='alert alert-danger d-flex align-items-center' role='alert'>
+                            <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='currentColor' class='bi bi-exclamation-triangle-fill flex-shrink-0 me-2' viewBox='0 0 16 16' role='img' aria-label='Warning:'>
+                                <path d='M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z'/>
+                            </svg>
+                            <div>
+                                $error
+                            </div>
+                        </div>
+                    ";
+                unset($_SESSION["sess_add_err_order"]);
+            }
+
+            if (isset($_SESSION["sess_add_suc_order"])) {
+                $success = $_SESSION["sess_add_suc_order"];
+                echo "
+                        <div class='alert alert-success   d-flex align-items-center' role='alert'>
+                                <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='currentColor' class='bi bi-check-circle-fill flex-shrink-0 me-2' viewBox='0 0 16 16'>
+                                    <path d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z'/>
+                                </svg>
+                            <div>
+                                $success
+                            </div>
+                        </div>
+                    ";
+                unset($_SESSION["sess_add_suc_order"]);
+            }
             ?>
         </form>
     </div>

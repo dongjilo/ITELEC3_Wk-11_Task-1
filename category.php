@@ -45,6 +45,9 @@
                 <a class="nav-link active" href="category.php">Category Table</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="order.php">Order Table</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="add.php">Add</a>
             </li>
             

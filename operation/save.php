@@ -129,6 +129,39 @@ switch ($table) {
         }
         header('Location: ../add.php');
         break;
+
+    case 'ordertbl':
+        if (isset($_POST['saveBtn'])) {
+            $item = $_POST['item_select'];
+            $qty = $_POST['txtqty'];
+            $total = $_POST['txttotal'];
+
+            if (!empty($item) && !empty($qty) && !empty($total)) {
+                $sql = "insert into ordertbl(item_id, quantity, total) VALUES('$item', '$qty', '$total')";
+                $query = $conn -> query($sql);
+
+                if ($query) {
+                    $_SESSION["sess_add_suc_order"] = "Order successfully added.";
+                    unset($_SESSION["sess_add_err_order"]);
+                }
+                else {
+                    $_SESSION["sess_add_err_order"] = "Failed to add order.";
+                    unset($_SESSION["sess_add_suc_order"]);
+                }
+
+
+            } else {
+                $_SESSION["sess_add_err_order"] = "Please complete all fields.";
+                unset($_SESSION["sess_add_suc_item"]);
+            }
+        } else {
+            $_SESSION["sess_add_err_order"] = "Empty fields.";
+            unset($_SESSION["sess_add_suc_order"]);
+
+        }
+        header('Location: ../add.php');
+        break;
+
     default:
         break;
 }

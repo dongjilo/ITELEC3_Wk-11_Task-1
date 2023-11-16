@@ -1,10 +1,9 @@
 <?php
     require_once("db/dbconnection.php");
     include 'operation/sessioncheck.php';
-    $tbl = "itemtbl";
-    $loc = "items";
+    $tbl = "ordertbl";
+    $loc = "order";
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <script src="./js/bootstrap.bundle.min.js"></script>
-    <title>Item Table</title>
+    <title>Order Table</title>
 </head>
 <body style="background-color: #eee">
 <nav class="navbar navbar-expand navbar-dark bg-dark sticky-top px-5 text-secondary">
@@ -36,16 +35,16 @@
                 </ul>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="index.php">User Table</span></a>
+                <a class="nav-link" href="index.php">User Table</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="items.php">Item Table</a>
+                <a class="nav-link" href="items.php">Item Table</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="category.php">Category Table</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="order.php">Order Table</a>
+                <a class="nav-link active" href="order.php">Order Table</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="add.php">Add</a>
@@ -56,7 +55,7 @@
 
 <div class="container pt-5">
     <div class="card p-4">
-        <h1 class="py-2 text-center">Item Table</h1>
+        <h1 class="py-2 text-center">Order Table</h1>
         <?php
         if (isset($_SESSION["sess_del_err"])) {
             $error = $_SESSION["sess_del_err"];
@@ -86,7 +85,7 @@
             unset($_SESSION["sess_del_suc"]);
         }
 
-        $sql = "select $tbl.*, categorytbl.category_name from $tbl inner join categorytbl on $tbl.category_id = categorytbl.category_id";
+        $sql = "select {$tbl}.*, itemtbl.item_name, itemtbl.item_price from {$tbl} inner join itemtbl on {$tbl}.item_id = itemtbl.item_id";
         $query = $conn->query($sql);
         $numRows = $query->num_rows;
 
@@ -94,41 +93,41 @@
             echo "<table class='table table-hover table-striped table-bordered'> 
                         <tr>
                         <thead>
+                            <th>Order ID</th>
                             <th>Item ID</th>
-                            <th>Name</th>
-                            <th>Price</th>
+                            <th>Item Name</th>
+                            <th>Item Price</th>
                             <th>Quantity</th>
-                            <th>Category ID</th>
-                            <th>Category Name</th>
-                            <th>Action</th>
+                            <th>Total</th>
                         </thead>
                         </tr>";
+
             while($row = $query -> fetch_assoc()){
-                $id = $row['item_id'];
-                $name = $row['item_name'];
-                $price = $row['item_price'];
-                $quantity = $row['item_quantity'];
-                $categoryID = $row['category_id'];
-                $categoryName = $row['category_name'];
+                $id = $row['order_id'];
+                $item_id = $row['item_id'];
+                $item_name = $row['item_name'];
+                $item_price = $row['item_price'];
+                $quantity = $row['quantity'];
+                $total = $row['total'];
+
 
                 echo "<tr>";
                 echo "<td>$id</td>";
-                echo "<td>$name</td>";
-                echo "<td>$price</td>";
+                echo "<td>$item_id</td>";
+                echo "<td>$item_name</td>";
+                echo "<td>$item_price</td>";
                 echo "<td>$quantity</td>";
-                echo "<td>$categoryID</td>";
-                echo "<td>$categoryName</td>";
-
-                echo "<td class='text-center'><a href='operation/delete.php?id=$id&tbl=$tbl&loc=$loc' class='btn btn-danger btn-sm' onclick='return confirm(`Are you sure you want to delete this row?`)'>
-                        <svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='currentColor' class='bi bi-trash-fill flex-shrink-0 me-2' viewBox='0 0 16 16'>
-                          <path d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z'/>
-                        </svg>Delete</a>
-                        <a href='edititem.php?id=$id' class='btn btn-warning btn-sm'>
-                        <svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='currentColor' class='bi bi-x-lg flex-shrink-0 me-2' viewBox='0 0 16 16'>
-                          <path d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z'/>
-                        </svg>Edit</a>
+                echo "<td>$total</td>";
+                echo "<td class='text-center'>
+                            <a href='operation/delete.php?id=$id&tbl=$tbl&loc=$loc' class='btn btn-danger btn-sm' onclick='return confirm(`Are you sure you want to delete this row?`)'>
+                            <svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='currentColor' class='bi bi-trash-fill flex-shrink-0 me-2' viewBox='0 0 16 16'>
+                              <path d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z'/>
+                            </svg>Delete</a>
+                            <a href='edituser.php?id=$id&from=index' class='btn btn-warning btn-sm'>
+                            <svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='currentColor' class='bi bi-x-lg flex-shrink-0 me-2' viewBox='0 0 16 16'>
+                              <path d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z'/>
+                            </svg>Edit</a>
                         </td>";
-                echo "</tr>";
                 echo "</tr>";
 
             }
