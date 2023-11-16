@@ -73,10 +73,10 @@ switch ($table) {
             $name = $_POST['txtname'];
             $price = $_POST['txtprice'];
             $qty = $_POST['txtqty'];
-            $cat = $_POST['txtcat'];
+            $cat = $_POST['category_select'];
 
             if (!empty($name) && !empty($price) && !empty($qty) && !empty($cat)) {
-                $sql = "insert into itemtbl(name, price, quantity, category) VALUES('$name', '$price', '$qty', '$cat')";
+                $sql = "insert into itemtbl(item_name, item_price, item_quantity, category_id) VALUES('$name', '$price', '$qty', '$cat')";
                 $query = $conn -> query($sql);
 
                 if ($query) {

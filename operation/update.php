@@ -44,7 +44,7 @@ switch ($table) {
             $qty = $_POST['txtqty'];
             $cat = $_POST['txtcat'];
             if (!empty($id) && !empty($name) && !empty($price) && !empty($qty) && !empty($cat)) {
-                $sql = "update itemtbl set name='$name', price='$price', quantity='$qty', category='$cat' where id='$id'";
+                $sql = "update itemtbl set item_name='$name', item_price='$price', item_quantity='$qty', category_id='$cat' where item_id='$id'";
                 $query = $conn -> query($sql);
                 if ($query) {
                     $_SESSION["sess_upd_suc_item"] = "Info successfully updated.";
@@ -70,7 +70,7 @@ switch ($table) {
             $name = $_POST['txtcatname'];
             $desc = $_POST['txtcatdes'];
             if (!empty($id) && !empty($name) && !empty($desc)) {
-                $sql = "update categorytbl set category_name='$name', category_description='$desc' where id='$id'";
+                $sql = "update categorytbl set category_name='$name', category_description='$desc' where category_id='$id'";
                 $query = $conn -> query($sql);
                 if ($query) {
                     $_SESSION["sess_upd_suc_cat"] = "Info successfully updated.";

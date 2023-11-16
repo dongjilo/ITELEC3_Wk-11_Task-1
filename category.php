@@ -99,7 +99,7 @@
                         </thead>
                         </tr>";
             while($row = $query -> fetch_assoc()){
-                $id = $row['id'];
+                $id = $row['category_id'];
                 $name = $row['category_name'];
                 $desc = $row['category_description'];
 

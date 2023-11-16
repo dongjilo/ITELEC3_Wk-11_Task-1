@@ -83,7 +83,7 @@
             unset($_SESSION["sess_del_suc"]);
         }
 
-        $sql = "select * from $tbl";
+        $sql = "select $tbl.*, categorytbl.category_name from $tbl inner join categorytbl on $tbl.category_id = categorytbl.category_id";
         $query = $conn->query($sql);
         $numRows = $query->num_rows;
 
@@ -95,23 +95,26 @@
                             <th>Name</th>
                             <th>Price</th>
                             <th>Quantity</th>
-                            <th>Category</th>
+                            <th>Category ID</th>
+                            <th>Category Name</th>
                             <th>Action</th>
                         </thead>
                         </tr>";
             while($row = $query -> fetch_assoc()){
-                $id = $row['id'];
-                $name = $row['name'];
-                $price = $row['price'];
-                $quantity = $row['quantity'];
-                $category = $row['category'];
+                $id = $row['item_id'];
+                $name = $row['item_name'];
+                $price = $row['item_price'];
+                $quantity = $row['item_quantity'];
+                $categoryID = $row['category_id'];
+                $categoryName = $row['category_name'];
 
                 echo "<tr>";
                 echo "<td>$id</td>";
                 echo "<td>$name</td>";
                 echo "<td>$price</td>";
                 echo "<td>$quantity</td>";
-                echo "<td>$category</td>";
+                echo "<td>$categoryID</td>";
+                echo "<td>$categoryName</td>";
 
                 echo "<td class='text-center'><a href='operation/delete.php?id=$id&tbl=$tbl&loc=$loc' class='btn btn-danger btn-sm' onclick='return confirm(`Are you sure you want to delete this row?`)'>
                         <svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='currentColor' class='bi bi-trash-fill flex-shrink-0 me-2' viewBox='0 0 16 16'>

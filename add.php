@@ -106,7 +106,7 @@
 
             <div class="form-floating mb-3">
                 <input type="date" class="form-control" id="floatingBdate" placeholder="0000-00-00" name="txtbdate">
-                <label for="floatingUname">Enter Birthdate</label>
+                <label for="floatingBdate">Enter Birthdate</label>
             </div>
 
             <div class="form-floating mb-3">
@@ -155,7 +155,7 @@
 
     <div class="card p-4 mt-4" style="display: none;" id="item">
         <p class="card-title h1 text-center">Add Item</p>
-        <form action="operation/save.php?table=itemtbl" method="post">
+        <form action="operation/save.php?table=itemtbl&from=add" method="post">
 
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="floatingName" placeholder="Name" name="txtname">
@@ -173,8 +173,18 @@
             </div>
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingCat" placeholder="Name" name="txtcat">
-                <label for="floatingCat">Enter Category</label>
+                <select name="category_select" id="category_select" class="form-select">
+                    <?php
+                        $sql = "select * from categorytbl";
+                        $query = $conn->query($sql);
+                        while ($row = $query->fetch_assoc()){
+                            $category_id = $row["category_id"];
+                            $category_name = $row["category_name"];
+                            echo "<option value='$category_id'>$category_name</option>";
+                        }
+                    ?>
+                </select>
+                <label for="category_select">Select Category</label>
             </div>
 
             <div class="container-fluid text-center mb-3">

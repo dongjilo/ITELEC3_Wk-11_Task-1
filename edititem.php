@@ -4,13 +4,14 @@
 
     if (isset($_GET['id']) && $_GET['id'] <> "") {
         $id = $_GET['id'];
-        $sql = "select * from itemtbl where id='$id'";
+        $sql = "select itemtbl.*, categorytbl.category_name from itemtbl inner join categorytbl on itemtbl.category_id = categorytbl.category_id where item_id=$id";
         $query = $conn -> query($sql);
         while ($row = $query->fetch_assoc()) {
-            $name = $row['name'];
-            $price = $row['price'];
-            $qty = $row['quantity'];
-            $cat = $row['category'];
+            $name = $row['item_name'];
+            $price = $row['item_price'];
+            $qty = $row['item_quantity'];
+            $cat_id = $row['category_id'];
+            $cat_name = $row['category_name'];
 
         }
 
@@ -90,8 +91,19 @@
             </div>
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingCat" placeholder="Name" name="txtcat" value="<?php echo $cat; ?>">
-                <label for="floatingCat">Enter Category</label>
+                <select name="category_select" id="category_select" class="form-select">
+                    <?php
+                    echo "<option value='$cat_id selected'>$cat_name</option>";
+                    $sql = "select * from categorytbl";
+                    $query = $conn->query($sql);
+                    while ($row = $query->fetch_assoc()){
+                        $category_id = $row["category_id"];
+                        $category_name = $row["category_name"];
+                        echo "<option value='$category_id'>$category_name</option>";
+                    }
+                    ?>
+                </select>
+                <label for="category_select">Select Category</label>
             </div>
 
             <div class="container-fluid text-center mb-3">

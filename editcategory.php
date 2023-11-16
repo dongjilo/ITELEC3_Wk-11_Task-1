@@ -4,7 +4,7 @@
 
     if (isset($_GET['id']) && $_GET['id'] <> "") {
         $id = $_GET['id'];
-        $sql = "select * from categorytbl where id='$id'";
+        $sql = "select * from categorytbl where category_id='$id'";
         $query = $conn -> query($sql);
         while ($row = $query->fetch_assoc()) {
             $name = $row['category_name'];
