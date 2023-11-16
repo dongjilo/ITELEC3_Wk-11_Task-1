@@ -42,7 +42,7 @@ switch ($table) {
             $name = $_POST['txtname'];
             $price = $_POST['txtprice'];
             $qty = $_POST['txtqty'];
-            $cat = $_POST['txtcat'];
+            $cat = $_POST['category_select'];
             if (!empty($id) && !empty($name) && !empty($price) && !empty($qty) && !empty($cat)) {
                 $sql = "update itemtbl set item_name='$name', item_price='$price', item_quantity='$qty', category_id='$cat' where item_id='$id'";
                 $query = $conn -> query($sql);
@@ -89,6 +89,38 @@ switch ($table) {
             unset($_SESSION["sess_upd_suc_cat"]);
         }
         header("Location: ../editcategory.php?id=$id");
+        break;
+
+    case 'ordertbl':
+        if (isset($_POST['updBtn'])) {
+            $id = $_POST['txtid'];
+            $item = $_POST['item_select'];
+            $qty = $_POST['txtqty'];
+            $total = $_POST['txttotal'];
+
+            if (!empty($item) && !empty($qty) && !empty($total)) {
+                $sql = "update ordertbl set item_id = '{$item}', quantity='{$qty}', total='{$total}' where order_id={$id}";
+                $query = $conn -> query($sql);
+
+                if ($query) {
+                    $_SESSION["sess_upd_suc_order"] = "Order successfully updated.";
+                    unset($_SESSION["sess_upd_err_order"]);
+                }
+                else {
+                    $_SESSION["sess_upd_err_order"] = "Failed to update order.";
+                    unset($_SESSION["sess_upd_suc_order"]);
+                }
+
+
+            } else {
+                $_SESSION["sess_upd_err_order"] = "Please complete all fields.";
+                unset($_SESSION["sess_upd_suc_item"]);
+            }
+        } else {
+            $_SESSION["sess_upd_err_order"] = "Empty fields.";
+            unset($_SESSION["sess_upd_suc_order"]);
+        }
+        header("Location: ../editorder.php?id=$id");
         break;
     default:
         break;
