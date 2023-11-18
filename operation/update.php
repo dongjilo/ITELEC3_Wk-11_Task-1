@@ -7,6 +7,7 @@ $table = $_GET['table'];
 switch ($table) {
     case 'usertbl':
         if (isset($_POST['updBtn'])) {
+            $from = $_GET['from'];
             $id = $_POST['txtid'];
             $name = $_POST['txtname'];
             $username = $_POST['txtuname'];
@@ -34,7 +35,7 @@ switch ($table) {
             $_SESSION["sess_upd_err"] = "Empty fields.";
             unset($_SESSION["sess_upd_suc"]);
         }
-        header("Location: ../edituser.php?id=$id");
+        header("Location: ../edituser.php?id=$id&from=$from");
         break;
     case 'itemtbl':
         if (isset($_POST['updBtn'])) {

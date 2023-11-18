@@ -1,7 +1,7 @@
 <?php
+    ini_set('display_errors', 0);
     require_once ("db/dbconnection.php");
     include 'operation/sessioncheck.php';
-
 
     $id = $_GET['id'];
     $from = $_GET['from'];
@@ -75,7 +75,7 @@
 <div class="container w-50 mt-5">
     <div class="card p-4">
         <p class="card-title h1 text-center ">Edit Information</p>
-        <form action="operation/update.php?table=usertbl&from=usertbl" method="post">
+        <form action="operation/update.php?table=usertbl&from=<?php echo $from; ?>" method="post">
 
             <div class="form-floating mb-3">
                 <input type="hidden" class="form-control visually-hidden" id="from" placeholder="from" name="from" value="<?php echo $from; ?>">
