@@ -78,10 +78,6 @@
         <form action="operation/update.php?table=usertbl&from=<?php echo $from; ?>" method="post">
 
             <div class="form-floating mb-3">
-                <input type="hidden" class="form-control visually-hidden" id="from" placeholder="from" name="from" value="<?php echo $from; ?>">
-            </div>
-
-            <div class="form-floating mb-3">
                 <input type="hidden" class="form-control visually-hidden" id="floatingID" placeholder="ID" name="txtid" value="<?php echo $id; ?>">
             </div>
 
@@ -159,10 +155,10 @@
 
 <script>
     $(document).ready(function (){
-        var from = $('#from').val();
-        if (from == "profile") {
+        var from = "<?php echo $from ?>";
+        if (from === "profile") {
             var newUrl = 'profile.php';
-        } else if (from == "index") {
+        } else if (from === "index") {
             var newUrl = 'index.php';
         }
         $('#cancelBtn').attr("href", newUrl);
