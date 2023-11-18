@@ -4,6 +4,7 @@
 
 
     $id = $_GET['id'];
+    $from = $_GET['from'];
 
     $sql = "select * from usertbl where id={$id}";
     $query = $conn->query($sql);
@@ -30,6 +31,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <title>Edit Page</title>
 </head>
 <body style="background-color: #eee">
@@ -76,6 +78,10 @@
         <form action="operation/update.php?table=usertbl&from=usertbl" method="post">
 
             <div class="form-floating mb-3">
+                <input type="hidden" class="form-control visually-hidden" id="from" placeholder="from" name="from" value="<?php echo $from; ?>">
+            </div>
+
+            <div class="form-floating mb-3">
                 <input type="hidden" class="form-control visually-hidden" id="floatingID" placeholder="ID" name="txtid" value="<?php echo $id; ?>">
             </div>
 
@@ -111,7 +117,7 @@
 
             <div class="container-fluid text-center mb-3">
                 <input type="submit" class="btn btn-primary" value="Update" name="updBtn">
-                <?php echo "<a href='index.php'  class='btn btn-danger'>Cancel</a>" ?>
+                <?php echo "<a href='index.php'  class='btn btn-danger' id='cancelBtn'>Cancel</a>" ?>
             </div>
 
             <?php
@@ -150,3 +156,15 @@
 </div>
 </body>
 </html>
+
+<script>
+    $(document).ready(function (){
+        var from = $('#from').val();
+        if (from == "profile") {
+            var newUrl = 'profile.php';
+        } else if (from == "index") {
+            var newUrl = 'index.php';
+        }
+        $('#cancelBtn').attr("href", newUrl);
+    });
+</script>
