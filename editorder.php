@@ -5,10 +5,12 @@
 
     if (isset($_GET['id']) && $_GET['id'] <> "") {
         $orderId = $_GET['id'];
-        $sql = "select ordertbl.*, itemtbl.* from ordertbl inner join itemtbl on ordertbl.item_id = itemtbl.item_id where order_id={$orderId}";
+        $sql = "select ordertbl.*, itemtbl.*, usertbl.* from ordertbl inner join itemtbl on ordertbl.item_id = itemtbl.item_id inner join usertbl on ordertbl.user_id = usertbl.id where order_id={$orderId}";
         $query = $conn -> query($sql);
         while ($row = $query->fetch_assoc()) {
             $id = $row['order_id'];
+            $userId = $row['user_id'];
+            $userName = $row['name'];
             $itemId = $row['item_id'];
             $itemName = $row['item_name'];
             $itemPrice = $row['item_price'];
@@ -79,6 +81,22 @@
 
             <div class="form-floating mb-3">
                 <input type="hidden" class="form-control visually-hidden" id="floatingID" placeholder="ID" name="txtid" value="<?php echo $id; ?>">
+            </div>
+
+            <div class="form-floating mb-3">
+                <select name="user_select" id="user_select" class="form-select">
+                    <option value="<?php echo $userId ?>"><?php echo $userName ?></option>
+                    <?php
+                    $sql = "select * from usertbl";
+                    $query = $conn->query($sql);
+                    while ($row = $query->fetch_assoc()){
+                        $user_id = $row["id"];
+                        $user_name = $row["name"];
+                        echo "<option value='$user_id'>$user_name</option>";
+                    }
+                    ?>
+                </select>
+                <label for="user_select">Select User</label>
             </div>
 
             <div class="form-floating mb-3">

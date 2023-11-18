@@ -135,9 +135,10 @@ switch ($table) {
             $item = $_POST['item_select'];
             $qty = $_POST['txtqty'];
             $total = $_POST['txttotal'];
+            $user_id = $_POST['user_select'];
 
-            if (!empty($item) && !empty($qty) && !empty($total)) {
-                $sql = "insert into ordertbl(item_id, quantity, total) VALUES('$item', '$qty', '$total')";
+            if (!empty($item) && !empty($qty) && !empty($total) && !empty($user_id)) {
+                $sql = "insert into ordertbl(item_id, quantity, total, user_id) VALUES('$item', '$qty', '$total', '$user_id')";
                 $query = $conn -> query($sql);
 
                 if ($query) {

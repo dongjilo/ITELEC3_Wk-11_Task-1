@@ -97,9 +97,10 @@ switch ($table) {
             $item = $_POST['item_select'];
             $qty = $_POST['txtqty'];
             $total = $_POST['txttotal'];
+            $user_id = $_POST['user_select'];
 
-            if (!empty($item) && !empty($qty) && !empty($total)) {
-                $sql = "update ordertbl set item_id = '{$item}', quantity='{$qty}', total='{$total}' where order_id={$id}";
+            if (!empty($item) && !empty($qty) && !empty($total) && !empty($user_id)) {
+                $sql = "update ordertbl set item_id = '{$item}', quantity='{$qty}', total='{$total}', user_id='{$user_id}' where order_id={$id}";
                 $query = $conn -> query($sql);
 
                 if ($query) {

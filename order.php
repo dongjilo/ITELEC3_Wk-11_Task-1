@@ -85,7 +85,7 @@
             unset($_SESSION["sess_del_suc"]);
         }
 
-        $sql = "select {$tbl}.*, itemtbl.item_name, itemtbl.item_price from {$tbl} inner join itemtbl on {$tbl}.item_id = itemtbl.item_id";
+        $sql = "select {$tbl}.*, itemtbl.item_name, itemtbl.item_price, usertbl.name from {$tbl} inner join itemtbl on {$tbl}.item_id = itemtbl.item_id inner join usertbl on {$tbl}.user_id = usertbl.id;";
         $query = $conn->query($sql);
         $numRows = $query->num_rows;
 
@@ -94,6 +94,7 @@
                         <tr>
                         <thead>
                             <th>Order ID</th>
+                            <th>User</th>
                             <th>Item ID</th>
                             <th>Item Name</th>
                             <th>Item Price</th>
@@ -105,6 +106,7 @@
             while($row = $query -> fetch_assoc()){
                 $id = $row['order_id'];
                 $item_id = $row['item_id'];
+                $user = $row['name'];
                 $item_name = $row['item_name'];
                 $item_price = $row['item_price'];
                 $quantity = $row['quantity'];
@@ -113,6 +115,7 @@
 
                 echo "<tr>";
                 echo "<td>$id</td>";
+                echo "<td>$user</td>";
                 echo "<td>$item_id</td>";
                 echo "<td>$item_name</td>";
                 echo "<td>$item_price</td>";

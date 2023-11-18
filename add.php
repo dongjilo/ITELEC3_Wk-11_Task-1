@@ -314,7 +314,24 @@
         <form action="operation/save.php?table=ordertbl&from=add" method="post">
 
             <div class="form-floating mb-3">
-                <select name="item_select" id="item_select" class="form-select" name="item_select">
+                <select name="user_select" id="user_select" class="form-select">
+                    <option selected></option>
+                    <?php
+                    $sql = "select * from usertbl";
+                    $query = $conn->query($sql);
+                    while ($row = $query->fetch_assoc()){
+                        $user_id = $row["id"];
+                        $user_name = $row["name"];
+                        echo "<option value='$user_id'>$user_name</option>";
+                    }
+                    ?>
+                </select>
+                <label for="user_select">Select User</label>
+            </div>
+
+
+            <div class="form-floating mb-3">
+                <select name="item_select" id="item_select" class="form-select">
                     <option selected></option>
                     <?php
                     $sql = "select * from itemtbl";
