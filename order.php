@@ -95,7 +95,6 @@
                         <thead>
                             <th>Order ID</th>
                             <th>User</th>
-                            <th>Item ID</th>
                             <th>Item Name</th>
                             <th>Item Price</th>
                             <th>Quantity</th>
@@ -116,7 +115,6 @@
                 echo "<tr>";
                 echo "<td>$id</td>";
                 echo "<td>$user</td>";
-                echo "<td>$item_id</td>";
                 echo "<td>$item_name</td>";
                 echo "<td>$item_price</td>";
                 echo "<td>$quantity</td>";
