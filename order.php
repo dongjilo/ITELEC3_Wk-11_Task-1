@@ -30,7 +30,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Settings</a>
                 <ul class="dropdown-menu">
-                    <li><?php echo "<a class='dropdown-item' href='edituser.php?id={$user -> id}'>Update Profile</a>"; ?></li>
+                    <li><?php echo "<a class='dropdown-item' href='edituser.php?id={$user -> id}&from=profile'>Update Profile</a>"; ?></li>
                     <li><a class="dropdown-item" href="operation/logout.php" onclick="return confirm('Are you sure you want to logout?')">Logout</a></li>
                 </ul>
             </li>
