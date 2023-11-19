@@ -364,7 +364,7 @@
 
             <div class="container-fluid text-center mb-3">
                 <input type="submit" class="btn btn-primary" value="Save" name="saveBtn">
-                <a href="items.php" class="btn btn-danger">Cancel</a>
+                <a href="order.php" class="btn btn-danger">Cancel</a>
             </div>
 
             <?php
