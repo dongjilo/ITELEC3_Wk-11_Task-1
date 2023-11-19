@@ -98,7 +98,6 @@
                             <th>Name</th>
                             <th>Price</th>
                             <th>Quantity</th>
-                            <th>Category ID</th>
                             <th>Category Name</th>
                             <th>Action</th>
                         </thead>
@@ -116,7 +115,6 @@
                 echo "<td>$name</td>";
                 echo "<td>$price</td>";
                 echo "<td>$quantity</td>";
-                echo "<td>$categoryID</td>";
                 echo "<td>$categoryName</td>";
 
                 echo "<td class='text-center'><a href='operation/delete.php?id=$id&tbl=$tbl&loc=$loc' class='btn btn-danger btn-sm' onclick='return confirm(`Are you sure you want to delete this row?`)'>
